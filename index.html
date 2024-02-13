@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Invitation?</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column; /* Stack elements vertically */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .question {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 60px;
+    }
+    .button {
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px; /* Add margin between buttons */
+    }
+    .yes-button {
+      background-color: lightblue; /* Light blue */
+    }
+    .no-button {
+      position: absolute; /* Use absolute positioning for full-screen movement */
+      background-color: lightcoral; /* Light red */
+    }
+    
+  </style>
+</head>
+<body>
+  <h2 class="question">Will you go on a date with me ?</h2>
+  <button class="button yes-button">Yes</button>
+  <button class="button no-button">No</button>
+  <script>
+    const noButton = document.querySelector('.no-button');
+
+    noButton.addEventListener('mouseover', () => {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const buttonWidth = noButton.offsetWidth;
+      const buttonHeight = noButton.offsetHeight;
+
+      // Calculate potential random positions with margins
+      const minX = 0 + buttonWidth / 2;
+      const maxX = windowWidth - buttonWidth / 2;
+      const minY = 0 + buttonHeight / 2;
+      const maxY = windowHeight - buttonHeight / 2;
+
+      // Generate random positions within calculated margins
+      const randomX = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
+      const randomY = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+
+      noButton.style.left = `${randomX}px`;
+      noButton.style.top = `${randomY}px`;
+    });
+
+    const yesButton = document.querySelector('.yes-button');
+    yesButton.addEventListener('click', () => {
+      document.body.innerHTML = 'YAYY!';
+    });
+  </script>
+</body>
+</html>
